@@ -24,10 +24,10 @@ class Homework(Trie):
         _put(self.root_reversed, key[::-1])
 
     def count_words_with_suffix(self, pattern) -> int:
-        pattern = pattern[::-1]
         if not isinstance(pattern, str):
             raise TypeError(f"Illegal argument for count_words_with_suffix: suffix = {pattern} must be a string")
 
+        pattern = pattern[::-1]
         current = self.root_reversed
         for char in pattern:
             if char not in current.children:
@@ -39,6 +39,9 @@ class Homework(Trie):
         return len(result)        
 
     def has_prefix(self, prefix) -> bool:
+        if not isinstance(prefix, str):
+            raise TypeError(f"Illegal argument for has_prefix: prefix = {prefix} must be a string")
+        
         current = self.root
         for char in prefix:
             if char not in current.children:
